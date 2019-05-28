@@ -3,6 +3,7 @@ from rest_framework import viewsets, permissions
 from .serializers import BlogSerializer
 from rest_framework import filters
 from .pagination import BlogPageNumberPagination
+from urllib.parse import unquote
 
 class BlogViewSet(viewsets.ModelViewSet):
     # queryset = Blog.objects.all()
@@ -10,7 +11,7 @@ class BlogViewSet(viewsets.ModelViewSet):
         permissions.AllowAny
     ]
     serializer_class = BlogSerializer
-    # pagination_class = BlogPageNumberPagination
+    pagination_class = BlogPageNumberPagination
 
     filter_backends = (filters.SearchFilter,)
     search_fields = ('title', 'author')
@@ -21,6 +22,8 @@ class BlogViewSet(viewsets.ModelViewSet):
         """
         queryset = Blog.objects.all()
         tag = self.request.query_params.get('tag', None)
+        tn = unquote(tag)
+        print(tn)
         if tag is not None:
             queryset = queryset.filter(tags__in=[tag])
         return queryset

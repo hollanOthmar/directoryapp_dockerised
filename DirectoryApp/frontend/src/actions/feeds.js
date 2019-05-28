@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_BLOGS, GET_PODCASTS, GET_FEEDS, GET_TAGS, GET_FILTER } from './types';
+import { GET_BLOGS, GET_PODCASTS, GET_FEEDS, GET_TAGS, GET_FILTER, GET_MORE } from './types';
 
 // GET BLOGS
 export const getBlogs = () => dispatch => {
@@ -7,9 +7,10 @@ export const getBlogs = () => dispatch => {
         .then(res => {
             console.log(res.data)
             dispatch({
-                // next: res.data.next,
-                type: GET_FEEDS,
-                payload: res.data
+                blog_next: res.data.next,
+                podcast_next:null,
+                type: GET_BLOGS,
+                payload: res.data.results
             });
         }).catch(err => console.log(err));
 }
@@ -19,8 +20,10 @@ export const getPodcasts = () => dispatch => {
     axios.get('/api/podcasts/')
         .then(res => {
             dispatch({
+                blog_next: null,
+                podcast_next:res.data.next,
                 type: GET_PODCASTS,
-                payload: res.data
+                payload: res.data.results
             });
         }).catch(err => console.log(err));
 }
@@ -33,8 +36,10 @@ export const getFeeds = () => dispatch => {
       ])
       .then(axios.spread(function (blogs, podcasts) {
         dispatch({
+            blog_next:blogs.data.next,
+            podcast_next:podcasts.data.next,
             type: GET_FEEDS,
-            payload: blogs.data.concat(podcasts.data)
+            payload: blogs.data.results.concat(podcasts.data.results)
         });
       }))
       //.then(response => this.setState({ vehicles: response.data }))
@@ -56,14 +61,18 @@ export const getTags = () => dispatch => {
 
 // GET FILTER
 export const getFilter = (filter) => dispatch => {
+    const encodedUri = encodeURIComponent(filter);
+    // console.log(encodedUri);
     axios.all([
-        axios.get(`/api/blogs/?tag=${filter}`),
-        axios.get(`/api/podcasts/?tag=${filter}`)
+        axios.get(`/api/blogs/?tag=${encodedUri}`),
+        axios.get(`/api/podcasts/?tag=${encodedUri}`)
       ])
       .then(axios.spread(function (blogs, podcasts) {
         dispatch({
+            blog_next:blogs.data.next,
+            podcast_next:podcasts.data.next,
             type: GET_FEEDS,
-            payload: blogs.data.concat(podcasts.data)
+            payload: blogs.data.results.concat(podcasts.data.results)
         });
       }))
       //.then(response => this.setState({ vehicles: response.data }))
@@ -78,8 +87,10 @@ export const getSearch = (filter) => dispatch => {
       ])
       .then(axios.spread(function (blogs, podcasts) {
         dispatch({
+            blog_next:blogs.data.next,
+            podcast_next:podcasts.data.next,
             type: GET_FEEDS,
-            payload: blogs.data.concat(podcasts.data)
+            payload: blogs.data.results.concat(podcasts.data.results)
         });
       }))
       //.then(response => this.setState({ vehicles: response.data }))
@@ -88,12 +99,33 @@ export const getSearch = (filter) => dispatch => {
 
 // GET MORE
 export const getMore = (url) => dispatch => {
-    axios.get(url)
+    if(url.isLoadingBlog != null && url.isLoadingPodcast == null ||
+        url.isLoadingBlog == null && url.isLoadingPodcast !=null
+        ){
+        axios.get(!!url.isLoadingBlog? url.isLoadingBlog : url.isLoadingPodcast)
         .then(res => {
             dispatch({
-                next: res.data.next,
-                type: GET_FEEDS,
+                blog_next: !!url.isLoadingBlog ? res.data.next: null,
+                podcast_next:!!url.isLoadingPodcast ? res.data.next: null,
+                type: GET_MORE,
                 payload: res.data.results
             });
         }).catch(err => console.log(err));
+    }
+    else {
+        axios.all([
+            axios.get(url.isLoadingBlog),
+            axios.get(url.isLoadingPodcast)
+          ])
+          .then(axios.spread(function (blogs, podcasts) {
+            dispatch({
+                blog_next:blogs.data.next,
+                podcast_next:podcasts.data.next,
+                type: GET_MORE,
+                payload: blogs.data.results.concat(podcasts.data.results)
+            });
+          }))
+          //.then(response => this.setState({ vehicles: response.data }))
+          .catch(error => console.log(error));
+    }
 }

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getBlogs, getPodcasts, getFeeds, getMore } from '../../actions/feeds'
 
+
 const divStyle = {
     width : '50%'
   };
@@ -12,48 +13,74 @@ const cardStyle = {
 };
   
 export class Feed extends Component {
-    /*constructor(props){
+    constructor(props){
+        // this.props.isLoading = false;
         super(props)
         // Sets up our initial state
-    // this.state = {
-    //     next: null,
-    //     feeds: [],
-    //   };
+        this.state = {
+            isLoadingBlog:null,
+            isLoadingPodcast:null
+        };
         // Binds our scroll event handler
     window.onscroll = () => {
 
-        // console.log(this.props.next)
-        // const {
-        //   state: {
-        //     next,
-        //   },
-        // } = this;
-  
+        const {
+          state: {
+            isLoadingBlog,
+            isLoadingPodcast
+          },
+        } = this;
+        console.log(isLoadingBlog);
+        console.log(this.props.blog_next);
+        console.log(isLoadingPodcast);
+        console.log(this.props.podcast_next)
         // Bails early if:
         // * there's an error
         // * it's already loading
         // * there's nothing left to load
-        if (this.props.next == null) return;
+        // if(isLoading == this.props.blog_next) return;
+        if(isLoadingBlog == this.props.blog_next && isLoadingPodcast == this.props.podcast_next) return;
+        if (this.props.blog_next == null && this.props.podcast_next == null) return;
 
-        console.log(this.props.next)
+        // console.log(this.props.next)
+        // if(this.props.blog_next == null) return;
 
         if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
             // you're at the bottom of the page
             // alert('scrolling');
-            this.props.getMore(this.props.next);
+            // console.log(this.props.blog_next)
+            // console.log(this.props.podcast_next)
+            // this.props.isLoading = true;
+            // this.props.getMore(this.props.blog_next);
+            
+            this.setState({
+                isLoadingBlog:this.props.blog_next,
+                isLoadingPodcast:this.props.podcast_next
+            }, () =>{
+                const more = {
+                    "isLoadingBlog":this.props.blog_next,
+                    "isLoadingPodcast":this.props.podcast_next
+                }
+                
+                this.props.getMore(more);
+            });
+            
         }
   
         // Checks that the page has scrolled to the bottom
-        // if (
-        //   window.innerHeight + document.documentElement.scrollTop
-        //   === document.documentElement.offsetHeight
-        // ) {
-        // //   this.props.getMore(this.props.next);
-        // // console.log(this.props.next)
-        // alert('scrolling')
-        // }
+        /*if (
+          window.innerHeight + document.documentElement.scrollTop
+          === document.documentElement.offsetHeight
+        ) {
+        //   this.props.getMore(this.props.next);
+        // console.log(this.props.next)
+            // alert('scrolling')
+            this.setState({isLoading:this.props.blog_next}, () =>{
+                this.props.getMore(this.props.blog_next);
+            });
+        }*/
       };
-    } */
+    } 
 
     static propTypes = {
         feeds: PropTypes.array.isRequired,
@@ -67,6 +94,17 @@ export class Feed extends Component {
         // this.props.getPodcasts()
         this.props.getFeeds()
     }
+
+    /*componentDidUpdate(){
+        // console.log('updated!!')
+        if(this.props.refresh_feed){
+            this.setState({
+                isLoadingBlog:null,
+                isLoadingPodcast:null
+            })
+        }
+    }*/
+
     openInNewTab = e => {
         e.persist();
         e.preventDefault();
@@ -110,7 +148,9 @@ export class Feed extends Component {
 
 const mapStateToProps = state => ({
     feeds: state.feeds.feeds,
-    // next: state.feeds.next
+    blog_next: state.feeds.blog_next,
+    podcast_next:state.feeds.podcast_next,
+    refresh_feed:state.feeds.refresh_feed
 });
 
 export default connect(mapStateToProps, {getFeeds,getMore,getBlogs})(Feed);

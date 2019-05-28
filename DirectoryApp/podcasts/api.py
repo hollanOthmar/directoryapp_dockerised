@@ -2,6 +2,7 @@ from podcasts.models import Podcast
 from rest_framework import viewsets, permissions
 from .serializers import PodcastSerializer
 from rest_framework import filters
+from .pagination import PodcastPageNumberPagination
 
 class PodcastViewSet(viewsets.ModelViewSet):
     # queryset = Podcast.objects.all()
@@ -9,6 +10,7 @@ class PodcastViewSet(viewsets.ModelViewSet):
         permissions.AllowAny
     ]
     serializer_class = PodcastSerializer
+    pagination_class = PodcastPageNumberPagination
 
     filter_backends = (filters.SearchFilter,)
     search_fields = ('title', 'description')
