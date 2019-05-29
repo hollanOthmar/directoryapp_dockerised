@@ -22,8 +22,8 @@ class BlogViewSet(viewsets.ModelViewSet):
         """
         queryset = Blog.objects.all()
         tag = self.request.query_params.get('tag', None)
-        tn = unquote(tag)
-        print(tn)
         if tag is not None:
-            queryset = queryset.filter(tags__in=[tag])
+            tn = unquote(tag)
+            print(tn)
+            queryset = queryset.filter(tags__in=[tn])
         return queryset
