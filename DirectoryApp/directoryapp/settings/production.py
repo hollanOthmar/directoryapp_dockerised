@@ -158,7 +158,7 @@ STATIC_URL = '/static/'
 
 #Deployment settings
 CSRF_COOKIE_SECURE = bool( os.environ.get('CSRF_COOKIE_SECURE', False) )
-SESSION_COOKIE_SECURE = bool( os.environ.get('SESSION_COOKIE_SECURE', True) )
+SESSION_COOKIE_SECURE = bool( os.environ.get('SESSION_COOKIE_SECURE', False) )
 SECURE_SSL_REDIRECT = bool( os.environ.get('SECURE_SSL_REDIRECT', False) )
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
