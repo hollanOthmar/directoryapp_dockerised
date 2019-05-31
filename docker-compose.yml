@@ -1,16 +1,16 @@
 version: '3'
 services:
-  db:
-    image: mysql:5.7
-    # environment:
-    #   - MYSQL_ROOT_PASSWORD=root
-    #   - MYSQL_USER=admin
-    #   - MYSQL_PASSWORD=p@ssw0rd
-    #   - MYSQL_DATABASE=directorydb
-    env_file:
-    - ./.env
-    ports:
-    - "3308:3306"
+  # db:
+  #   image: mysql:5.7
+  #   # environment:
+  #   #   - MYSQL_ROOT_PASSWORD=root
+  #   #   - MYSQL_USER=Admin
+  #   #   - MYSQL_PASSWORD=test@adm1n
+  #   #   - MYSQL_DATABASE=django
+  #   env_file:
+  #   - ./.env
+  #   ports:
+  #   - "3308:3306"
   web:
     env_file:
     - ./.env
@@ -25,5 +25,5 @@ services:
                       python manage.py migrate &&
                       python manage.py collectstatic --noinput &&
                       python manage.py runserver 0.0.0.0:8000"
-    depends_on:
-    - db
+    # depends_on:
+    # - db
