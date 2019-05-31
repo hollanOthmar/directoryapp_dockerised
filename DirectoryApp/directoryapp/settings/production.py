@@ -87,14 +87,25 @@ WSGI_APPLICATION = 'directoryapp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': os.getenv('MYSQL_DATABASE'),
+#         'USER': os.getenv('MYSQL_USER'),
+#         'PASSWORD': os.getenv('MYSQL_PASSWORD'),
+#         'HOST': os.getenv('MYSQL_HOST'),
+#         'PORT': os.getenv('MYSQL_PORT')
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('MYSQL_DATABASE'),
-        'USER': os.getenv('MYSQL_USER'),
-        'PASSWORD': os.getenv('MYSQL_PASSWORD'),
-        'HOST': os.getenv('MYSQL_HOST'),
-        'PORT': os.getenv('MYSQL_PORT')
+        'NAME': os.getenv('EXTERNAL_MYSQL_DB'),
+        'USER': os.getenv('EXTERNAL_MYSQL_USER'),
+        'PASSWORD': os.getenv('EXTERNAL_MYSQL_PASSWORD'),
+        'HOST': os.getenv('EXTERNAL_MYSQL_HOST'),
+        'PORT': os.getenv('EXTERNAL_MYSQL_PORT')
     }
 }
 # DATABASES = {

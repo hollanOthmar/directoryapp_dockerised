@@ -16,7 +16,8 @@ export default function Dashboard() {
     <Fragment>
       <Header />
       {/* <div id="particles-js"></div> */}
-      <Particles style={pjs} params={
+      <div style={pjs} >
+      <Particles params={
         {
           "particles":{
               "number":{
@@ -80,6 +81,7 @@ export default function Dashboard() {
           }
       }
       } />
+      </div>
       <Feed />
     </Fragment>
   )

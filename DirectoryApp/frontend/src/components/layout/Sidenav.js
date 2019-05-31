@@ -35,8 +35,8 @@ export class Sidenav extends Component {
         
         <nav id="sidebar">
             <div className="sidebar-header">
-            {/* <h3><Link to="/">ITblogs.es</Link></h3> */}
-                <a href="#" onClick={this.goToHome}>ITblogs.es</a>
+            <h3><Link to="/">ITblogs.es</Link></h3>
+                {/* <a href="#" onClick={this.goToHome}>ITblogs.es</a> */}
             </div>
             
     
