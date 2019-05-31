@@ -114,9 +114,12 @@ export class Feed extends Component {
     }
     
   render() {
+      
     return (
       <div>
-        {/* <h1>New Feed</h1> */}
+        <ol className="breadcrumb">
+            <li className="breadcrumb-item active">{!this.props.selected? "Recently Added": `About ${this.props.selected}`}</li>
+        </ol>
         <div className="d-flex align-content-start flex-wrap">
             {/* <div className="card-deck"> */}
                 {this.props.feeds.map(feed => (
@@ -131,7 +134,14 @@ export class Feed extends Component {
                             </h4>
                                 
                             </div>
+                            
                             <div className="card-footer bg-transparent border-0">
+                            <ul className="list-inline">
+                                    {feed.tags.map(tag => (
+                                        <li key={tag} className="list-inline-item"><span className="badge badge-secondary badge-pill">{tag}</span></li>
+                                    ))}
+                                    {/* <li class="list-inline-item">Nulla volutpat</li> */}
+                                </ul>
                                 <small className="text-muted">{feed.itemType} | created {new Date(feed.created_at).toLocaleDateString()}</small>
                             </div>
                         </div>
@@ -147,6 +157,7 @@ export class Feed extends Component {
 }
 
 const mapStateToProps = state => ({
+    selected:state.feeds.selected,
     feeds: state.feeds.feeds,
     blog_next: state.feeds.blog_next,
     podcast_next:state.feeds.podcast_next,

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getTags, getFilter, getFeeds, getBlogs,getPodcasts } from '../../actions/feeds';
+import { getTags, getFilter, getFeeds, getBlogs,getPodcasts,getPopular } from '../../actions/feeds';
+import { Link } from 'react-router-dom';
 
 export class Sidenav extends Component {
 
@@ -11,29 +12,33 @@ export class Sidenav extends Component {
         getPodcasts:PropTypes.func.isRequired,
         getFilter:PropTypes.func.isRequired,
         getFeeds:PropTypes.func.isRequired,
+        getPopular:PropTypes.func.isRequired,
     }
 
     componentDidMount() {
         //this.props.getBlogs()
         // this.props.getFilter()
-        this.props.getTags()
+        this.props.getPopular()
     }
 
     onClick = e => {
         // e.preventDefault();
         // this.
         e.persist();
-        // console.log(e.target.id);
+        console.log(e.target.id);
         this.props.getFilter(e.target.id)
     }
+    goToHome = () => {window.location.href = "/";}
 
   render() {
     return (
         
         <nav id="sidebar">
             <div className="sidebar-header">
-                <h3>ITblogs.es</h3>
+            {/* <h3><Link to="/">ITblogs.es</Link></h3> */}
+                <a href="#" onClick={this.goToHome}>ITblogs.es</a>
             </div>
+            
     
             <ul className="list-unstyled components">
                 <li className="justify-content-between align-items-center">
@@ -46,26 +51,23 @@ export class Sidenav extends Component {
                             <span className="badge badge-secondary badge-pill">Podcasts</span>
                         </a>
                 </li>
+                <li className="justify-content-between align-items-center">
+                    <Link to="/tags"><span className="badge badge-secondary badge-pill">All Tags</span></Link>
+                </li>
+                <li className="justify-content-between align-items-center">
+                    <Link to="/submit"><span className="badge badge-secondary badge-pill">Submit</span></Link>
+                </li>
                 <p>Popular Tags</p>
-                {/* <li className="justify-content-between align-items-center">
-                    <a href="#">
-                        <span className="badge badge-secondary badge-pill">technology</span>
-                    </a>
-                </li>
-                <li className="justify-content-between align-items-center">
-                    <a href="#">
-                        <span className="badge badge-secondary badge-pill">film</span>
-                    </a>
-                </li> */}
-                <li className="justify-content-between align-items-center">
-                    <a href="#" onClick={this.props.getFeeds}>
-                        <span className="badge badge-secondary badge-pill">all</span>
-                    </a>
-                </li>
-                {this.props.tags.map(tag => (
-                    <li key={tag.pk} className="justify-content-between align-items-center">
-                        <a href="#" id={tag.pk} onClick={this.onClick}>
-                            <span id={tag.pk} className="badge badge-secondary badge-pill" style={{backgroundColor:tag.tag_color}}>{tag.pk}</span>
+                {this.props.popular_tags.map(tag => (
+                    <li key={tag.tag_name} className="justify-content-between align-items-center">
+                        <a href="#" id={tag.tag_name} onClick={this.onClick}>
+                            {/* <span id={tag.tag_name} className="badge badge-secondary " style={{backgroundColor:tag.tag_color}}>{tag.tag_name}
+                                <span id={tag.tag_name} className="badge badge-secondary badge-pill">{tag.count}</span>
+                            </span> */}
+                            <span id={tag.tag_name} className="badge badge-secondary badge-pill" style={{backgroundColor:tag.tag_color}}>
+                            <div id={tag.tag_name} className="d-inline p-1 border-info">{tag.tag_name}</div> 
+                            <div id={tag.tag_name} className="d-inline p-1 rounded-pill">{tag.count}</div>
+                            </span>
                         </a>
                     </li>
                 ))}
@@ -77,7 +79,8 @@ export class Sidenav extends Component {
 }
 
 const mapStateToProps = state => ({
-    tags: state.tags.tags
+    tags: state.tags.tags,
+    popular_tags: state.tags.popular_tags
 });
 
-export default connect(mapStateToProps, {getTags,getFilter,getFeeds,getBlogs,getPodcasts})(Sidenav);
+export default connect(mapStateToProps, {getTags,getFilter,getFeeds,getBlogs,getPodcasts,getPopular})(Sidenav);

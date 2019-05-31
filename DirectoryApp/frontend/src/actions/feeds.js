@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_BLOGS, GET_PODCASTS, GET_FEEDS, GET_TAGS, GET_FILTER, GET_MORE } from './types';
+import { GET_BLOGS, GET_PODCASTS, GET_FEEDS, GET_TAGS, GET_FILTER, GET_MORE, ADD_BLOG,ADD_PODCAST, GET_POPULAR } from './types';
 
 // GET BLOGS
 export const getBlogs = () => dispatch => {
@@ -15,6 +15,18 @@ export const getBlogs = () => dispatch => {
         }).catch(err => console.log(err));
 }
 
+// ADD BLOG
+
+export const addBlog = (item) => dispatch => {
+    axios.post('/api/blogs/',item)
+        .then(res => {
+            dispatch({
+                type: ADD_BLOG,
+                payload: []
+            });
+        }).catch(err => console.log(err));
+}
+
 // GET PODCASTS
 export const getPodcasts = () => dispatch => {
     axios.get('/api/podcasts/')
@@ -24,6 +36,19 @@ export const getPodcasts = () => dispatch => {
                 podcast_next:res.data.next,
                 type: GET_PODCASTS,
                 payload: res.data.results
+            });
+        }).catch(err => console.log(err));
+}
+
+// ADD PODCASTS
+export const addPodcast = (item) => dispatch => {
+    console.log(item);
+    axios.post('/api/podcasts/',item)
+        .then(res => {
+            console.log(res)
+            dispatch({
+                type: ADD_PODCAST,
+                payload: []
             });
         }).catch(err => console.log(err));
 }
@@ -59,6 +84,17 @@ export const getTags = () => dispatch => {
         }).catch(err => console.log(err));
 }
 
+// GET TOP 5 POPULAR TAGS
+export const getPopular = () => dispatch => {
+    axios.get('/api/popular/')
+        .then(res => {
+            dispatch({
+                type: GET_POPULAR,
+                payload: res.data
+            });
+        }).catch(err => console.log(err));
+}
+
 // GET FILTER
 export const getFilter = (filter) => dispatch => {
     const encodedUri = encodeURIComponent(filter);
@@ -69,6 +105,7 @@ export const getFilter = (filter) => dispatch => {
       ])
       .then(axios.spread(function (blogs, podcasts) {
         dispatch({
+            selected:filter,
             blog_next:blogs.data.next,
             podcast_next:podcasts.data.next,
             type: GET_FEEDS,

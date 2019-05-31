@@ -3,6 +3,7 @@ from rest_framework import viewsets, permissions
 from .serializers import PodcastSerializer
 from rest_framework import filters
 from .pagination import PodcastPageNumberPagination
+from urllib.parse import unquote
 
 class PodcastViewSet(viewsets.ModelViewSet):
     # queryset = Podcast.objects.all()
@@ -21,7 +22,9 @@ class PodcastViewSet(viewsets.ModelViewSet):
         by filtering against a `username` query parameter in the URL.
         """
         queryset = Podcast.objects.all()
+        queryset = queryset.filter(show=True)
         tag = self.request.query_params.get('tag', None)
         if tag is not None:
-            queryset = queryset.filter(tags__in=[tag])
+            tn = unquote(tag)
+            queryset = queryset.filter(tags__in=[tn])
         return queryset

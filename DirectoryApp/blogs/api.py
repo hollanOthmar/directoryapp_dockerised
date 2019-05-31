@@ -21,9 +21,10 @@ class BlogViewSet(viewsets.ModelViewSet):
         by filtering against a `username` query parameter in the URL.
         """
         queryset = Blog.objects.all()
+        queryset = queryset.filter(show=True)
         tag = self.request.query_params.get('tag', None)
         if tag is not None:
             tn = unquote(tag)
-            print(tn)
+            # print(tn)
             queryset = queryset.filter(tags__in=[tn])
         return queryset

@@ -5,3 +5,6 @@ export const GET_TAGS = 'GET_TAGS';
 export const GET_FILTER = 'GET_FILTER';
 export const GET_SEARCH = 'GET_SEARCH';
 export const GET_MORE = 'GET_MORE';
+export const ADD_BLOG = 'ADD_BLOG';
+export const ADD_PODCAST = 'ADD_PODCAST';
+export const GET_POPULAR = 'GET_POPULAR';

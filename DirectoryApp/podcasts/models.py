@@ -9,8 +9,9 @@ class Podcast(models.Model):
     itemType = models.CharField(editable=False,default='PODCAST',max_length=10)
     description = models.TextField(blank=False, default='')
     url = models.TextField(default='https://www.google.com',blank=False)
-    duration = models.DurationField()
+    duration = models.DurationField(null=True)
     tags = models.ManyToManyField(Tag,blank=True)
+    show = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
