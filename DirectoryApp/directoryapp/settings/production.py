@@ -157,9 +157,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 #Deployment settings
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
-SECURE_SSL_REDIRECT = False
+CSRF_COOKIE_SECURE = bool( os.environ.get('CSRF_COOKIE_SECURE', True) )
+SESSION_COOKIE_SECURE = bool( os.environ.get('SESSION_COOKIE_SECURE', True) )
+SECURE_SSL_REDIRECT = bool( os.environ.get('SECURE_SSL_REDIRECT', False) )
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
