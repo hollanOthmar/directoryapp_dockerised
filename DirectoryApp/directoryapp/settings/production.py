@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '&d82uh&p3ielih9f++7*3=$i@%6v%c
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = bool( os.environ.get('DJANGO_DEBUG', ) )
+DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
 # ALLOWED_HOSTS = []
 # ALLOWED_HOSTS = ['itblogs-demo.herokuapp.com','localhost','ITblogs.es','0.0.0.0','127.0.0.1']
