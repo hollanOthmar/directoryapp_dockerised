@@ -30,10 +30,10 @@ export class Feed extends Component {
             isLoadingPodcast
           },
         } = this;
-        console.log(isLoadingBlog);
-        console.log(this.props.blog_next);
-        console.log(isLoadingPodcast);
-        console.log(this.props.podcast_next)
+        // console.log(isLoadingBlog);
+        // console.log(this.props.blog_next);
+        // console.log(isLoadingPodcast);
+        // console.log(this.props.podcast_next)
         // Bails early if:
         // * there's an error
         // * it's already loading

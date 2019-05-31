@@ -25,7 +25,7 @@ export class Sidenav extends Component {
         // e.preventDefault();
         // this.
         e.persist();
-        console.log(e.target.id);
+        // console.log(e.target.id);
         this.props.getFilter(e.target.id)
     }
     goToHome = () => {window.location.href = "/";}

@@ -19,7 +19,7 @@ export class Submit extends Component {
     }
 
     userSelect = opt => {
-        console.log(opt.label, opt.value);
+        // console.log(opt.label, opt.value);
     }
 
     onChange = (e) => this.setState({[e.target.name]:e.target.value});
@@ -36,7 +36,7 @@ export class Submit extends Component {
                         description:description,
                         tags:tags.map(opt => opt.value)
                     }
-        console.log(item);
+        // console.log(item);
 
         if(type.value == "TYPE_BLOG"){
             this.props.addBlog(item);

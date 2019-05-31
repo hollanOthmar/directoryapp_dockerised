@@ -5,7 +5,7 @@ import { GET_BLOGS, GET_PODCASTS, GET_FEEDS, GET_TAGS, GET_FILTER, GET_MORE, ADD
 export const getBlogs = () => dispatch => {
     axios.get('/api/blogs/')
         .then(res => {
-            console.log(res.data)
+            // console.log(res.data)
             dispatch({
                 blog_next: res.data.next,
                 podcast_next:null,
@@ -42,10 +42,10 @@ export const getPodcasts = () => dispatch => {
 
 // ADD PODCASTS
 export const addPodcast = (item) => dispatch => {
-    console.log(item);
+    // console.log(item);
     axios.post('/api/podcasts/',item)
         .then(res => {
-            console.log(res)
+            // console.log(res)
             dispatch({
                 type: ADD_PODCAST,
                 payload: []
