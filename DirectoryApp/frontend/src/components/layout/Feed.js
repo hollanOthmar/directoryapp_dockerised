@@ -132,7 +132,7 @@ export class Feed extends Component {
                                     {feed.title}
                                 </a>
                             </h4>
-                                
+                              <p>{feed.description}</p>  
                             </div>
                             
                             <div className="card-footer bg-transparent border-0">
