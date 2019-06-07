@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Fragment, Component } from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
@@ -65,7 +65,9 @@ export class Submit extends Component {
     render() {
         const {title, description, url,tags,type} = this.state;
         return (
-            <div className="d-flex justify-content-center">
+            <Fragment>
+            <div className="bo lead d-flex align-items-center">Submit your Podcast or Blog</div>
+            <div className="d-flex justify-content-center pt-3">
                 <div className="card border-light rounded-lg shadow w-50">
                 <div className="card-body">
                 <form onSubmit={this.onSubmit}>
@@ -97,6 +99,7 @@ export class Submit extends Component {
                 </div>
                 </div>
             </div>
+            </Fragment>
         )
     }
 }

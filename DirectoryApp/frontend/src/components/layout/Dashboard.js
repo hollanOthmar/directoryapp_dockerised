@@ -16,8 +16,8 @@ export default function Dashboard() {
     <Fragment>
       <Header />
       {/* <div id="particles-js"></div> */}
-      <div className="hide_canvas" >
-      <Particles height="400px" style={pjs} params={
+      {/* <div className="hide_canvas" > */}
+      <Particles height="300px" style={pjs} params={
         {
           "particles":{
               "number":{
@@ -81,7 +81,7 @@ export default function Dashboard() {
           }
       }
       } />
-      </div>
+      {/* </div> */}
       <Feed />
     </Fragment>
   )

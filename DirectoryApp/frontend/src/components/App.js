@@ -22,7 +22,7 @@ class App extends Component {
                 <div id="content">
                     
                         <Fragment>
-                            <div className="container">
+                            {/* <div className="container"> */}
                                 {/* <Header /> */}
                                 <Switch >
                                     <Route exact path="/" component={Dashboard}/>
@@ -35,7 +35,7 @@ class App extends Component {
                                 </Switch>
                                 {/* <div id="particles-js"></div>
                                 <Dashboard /> */}
-                            </div>
+                            {/* </div> */}
                         </Fragment>
                     
                 </div>

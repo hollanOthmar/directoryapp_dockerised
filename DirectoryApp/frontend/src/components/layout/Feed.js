@@ -138,7 +138,7 @@ export class Feed extends Component {
                             <div className="card-footer bg-transparent border-0">
                             <ul className="list-inline">
                                     {feed.tags.map(tag => (
-                                        <li key={tag} className="list-inline-item"><span className="badge badge-secondary badge-pill" style={{backgroundColor:tag.tag_color}}>{tag.pk}</span></li>
+                                        <li key={tag.pk} className="list-inline-item"><span className="badge badge-secondary badge-pill" style={{backgroundColor:tag.tag_color}}>{tag.pk}</span></li>
                                     ))}
                                     {/* <li class="list-inline-item">Nulla volutpat</li> */}
                                 </ul>

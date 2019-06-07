@@ -163,7 +163,7 @@ a.article:hover {
 
 #content {
     width: calc(100% - 250px);
-    padding: 40px;
+    /* padding: 40px; */
     min-height: 100vh;
     transition: all 0.3s;
     position: absolute;
@@ -223,9 +223,22 @@ form.form-inline {
     z-index: -1;
     height: 400px;
 }
-@media screen and (min-width: 500px) {
-    .hide_canvas {
-      visibility: hidden;
-      display: none;
-    }
+
+  .bo {
+      background-color: #348498;
+      height: 100px;
+      width: 100%;
+      color: #fff;
+      padding-left: 10px;
+      padding-right: 10px;
+  }
+
+  .nav-float-middle {
+      margin-top: -40px;
+      margin-left: auto;
+      margin-right: auto;
+  }
+
+  .navbar-overide {
+      margin-bottom: 0px !important;
   }
