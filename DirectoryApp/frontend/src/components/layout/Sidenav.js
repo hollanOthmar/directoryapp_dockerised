@@ -64,9 +64,10 @@ export class Sidenav extends Component {
                             {/* <span id={tag.tag_name} className="badge badge-secondary " style={{backgroundColor:tag.tag_color}}>{tag.tag_name}
                                 <span id={tag.tag_name} className="badge badge-secondary badge-pill">{tag.count}</span>
                             </span> */}
-                            <span id={tag.tag_name} className="badge badge-secondary badge-pill" style={{backgroundColor:tag.tag_color}}>
+                            
+                            <span id={tag.tag_name} className="d-flex justify-content-between badge badge-secondary badge-pill w-75" style={{backgroundColor:tag.tag_color}}>
                             <div id={tag.tag_name} className="d-inline p-1 border-info">{tag.tag_name}</div> 
-                            <div id={tag.tag_name} className="d-inline p-1 rounded-pill">{tag.count}</div>
+                            <span id={tag.tag_name} className="d-inline badge-secondary badge">{tag.count}</span>
                             </span>
                         </a>
                     </li>

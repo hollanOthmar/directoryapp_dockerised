@@ -118,9 +118,10 @@ export const getFilter = (filter) => dispatch => {
 
 // GET SEARCH
 export const getSearch = (filter) => dispatch => {
+    const encodedUri = encodeURIComponent(filter);
     axios.all([
-        axios.get(`/api/blogs/?search=${filter}`),
-        axios.get(`/api/podcasts/?search=${filter}`)
+        axios.get(`/api/blogs/?search=${encodedUri}`),
+        axios.get(`/api/podcasts/?search=${encodedUri}`)
       ])
       .then(axios.spread(function (blogs, podcasts) {
         dispatch({

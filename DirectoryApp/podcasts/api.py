@@ -24,7 +24,12 @@ class PodcastViewSet(viewsets.ModelViewSet):
         queryset = Podcast.objects.all()
         queryset = queryset.filter(show=True)
         tag = self.request.query_params.get('tag', None)
+        search = self.request.query_params.get('search', None)
         if tag is not None:
             tn = unquote(tag)
             queryset = queryset.filter(tags__in=[tn])
+            
+        if search is not None:
+            sn = unquote(search)
+            queryset = queryset.filter(tags__in=[sn])
         return queryset

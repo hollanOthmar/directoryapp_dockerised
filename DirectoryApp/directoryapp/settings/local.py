@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'podcasts',
     'rest_framework',
     'frontend',
-    'tags'
+    'tags',
+    'colorfield'
 ]
 
 MIDDLEWARE = [

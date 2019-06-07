@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '&d82uh&p3ielih9f++7*3=$i@%6v%c
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
+DEBUG = False
 
 # ALLOWED_HOSTS = []
 # ALLOWED_HOSTS = ['itblogs-demo.herokuapp.com','localhost','ITblogs.es','0.0.0.0','127.0.0.1']
@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'podcasts',
     'rest_framework',
     'frontend',
-    'tags'
+    'tags',
+    'colorfield'
 ]
 
 MIDDLEWARE = [
@@ -157,9 +158,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 #Deployment settings
-CSRF_COOKIE_SECURE = bool( os.environ.get('CSRF_COOKIE_SECURE', False) )
-SESSION_COOKIE_SECURE = bool( os.environ.get('SESSION_COOKIE_SECURE', False) )
-SECURE_SSL_REDIRECT = bool( os.environ.get('SECURE_SSL_REDIRECT', False) )
+CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False
+SECURE_SSL_REDIRECT = False
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

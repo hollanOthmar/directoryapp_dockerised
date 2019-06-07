@@ -16,8 +16,8 @@ export default function Dashboard() {
     <Fragment>
       <Header />
       {/* <div id="particles-js"></div> */}
-      <div style={pjs} >
-      <Particles params={
+      <div className="hide_canvas" >
+      <Particles height="400px" style={pjs} params={
         {
           "particles":{
               "number":{

@@ -223,3 +223,9 @@ form.form-inline {
     z-index: -1;
     height: 400px;
 }
+@media screen and (min-width: 500px) {
+    .hide_canvas {
+      visibility: hidden;
+      display: none;
+    }
+  }

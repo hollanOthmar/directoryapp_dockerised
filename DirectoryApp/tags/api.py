@@ -28,7 +28,7 @@ class PopularTagsView(generics.GenericAPIView):
         # tags = [tag.pk for tag in Tag.objects.all()]
         tags = Tag.objects.all().annotate(total_blogs=Count('blog',distinct=True), total_podcasts=Count('podcast',distinct=True)).annotate(total_count=F('total_blogs') + F('total_podcasts')).order_by('-total_count')[:5]
         # data = serializers.serialize('json', list(tags), fields=('pk','tag_color'))
-        counts = [f.total_count for f in tags][:5]
+        counts = [f.total_count for f in tags][:4]
         summary = []
         for i in range(len(counts)):
             summary.append({"count":counts[i],"tag_name":tags[i].__dict__['tag_name'],"tag_color":tags[i].__dict__['tag_color']})
