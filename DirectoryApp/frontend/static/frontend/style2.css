@@ -225,7 +225,7 @@ form.form-inline {
 }
 
   .bo {
-      background-color: #348498;
+      background-color: #5bd1d7;
       height: 100px;
       width: 100%;
       color: #fff;
@@ -240,5 +240,5 @@ form.form-inline {
   }
 
   .navbar-overide {
-      margin-bottom: 0px !important;
+      margin-bottom: 0px !;
   }

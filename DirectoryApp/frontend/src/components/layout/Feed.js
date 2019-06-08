@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getBlogs, getPodcasts, getFeeds, getMore } from '../../actions/feeds'
+import { getBlogs, getPodcasts, getFeeds, getMore,getFilter } from '../../actions/feeds'
 
 
 const divStyle = {
@@ -92,7 +92,15 @@ export class Feed extends Component {
     componentDidMount() {
         // this.props.getBlogs()
         // this.props.getPodcasts()
-        this.props.getFeeds()
+        // console.log(this.props.selected)
+        // if(!!this.props.selected){
+        //     this.props.getFilter(this.props.selected)
+        // }
+        // else {
+        //     this.props.getFeeds();
+        // }
+        this.props.getFeeds(); 
+        
     }
 
     /*componentDidUpdate(){
@@ -114,7 +122,6 @@ export class Feed extends Component {
     }
     
   render() {
-      
     return (
       <div>
         <ol className="breadcrumb">
@@ -164,4 +171,4 @@ const mapStateToProps = state => ({
     refresh_feed:state.feeds.refresh_feed
 });
 
-export default connect(mapStateToProps, {getFeeds,getMore,getBlogs})(Feed);
+export default connect(mapStateToProps, {getFeeds,getMore,getBlogs,getFilter})(Feed);
