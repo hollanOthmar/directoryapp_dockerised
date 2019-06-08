@@ -46,7 +46,7 @@ export class Tags extends Component {
                 
             <div className="d-flex align-content-center justify-content-center flex-wrap">
             {filteredData.map(tag => (
-                <div key={`${tag.pk}${tag.pk}`} className="col-md-2 col-lg-2 p-2 d-flex justify-content-center rounded-pill shadow">
+                <div key={`${tag.pk}${tag.pk}`} className="col-md-2 col-lg-2 p-2 d-flex justify-content-center rounded-pill shadow" style={{backgroundColor:tag.tag_color}}>
                     <a href="#" id={tag.pk} onClick={this.onClick}>
                         <span id={tag.pk} className="badge badge-secondary badge-pill" style={{backgroundColor:tag.tag_color}}>{tag.pk}</span>
                     </a>

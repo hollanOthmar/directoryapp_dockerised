@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { GET_BLOGS, GET_PODCASTS, GET_FEEDS, GET_TAGS, GET_FILTER, GET_MORE, ADD_BLOG,ADD_PODCAST, GET_POPULAR } from './types';
 
+axios.defaults.xsrfCookieName = "csrftoken";
+axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
 // GET BLOGS
 export const getBlogs = () => dispatch => {
     axios.get('/api/blogs/')
@@ -17,8 +19,15 @@ export const getBlogs = () => dispatch => {
 
 // ADD BLOG
 
-export const addBlog = (item) => dispatch => {
-    axios.post('/api/blogs/',item)
+export const addBlog = item => dispatch => {
+    console.log(item);
+    axios.post('/api/blogs/',item
+    // {
+    //     headers: {
+    //          'X-CSRFTOKEN': csrfCookie,
+    //      },
+    // }
+    )
         .then(res => {
             dispatch({
                 type: ADD_BLOG,
@@ -41,8 +50,8 @@ export const getPodcasts = () => dispatch => {
 }
 
 // ADD PODCASTS
-export const addPodcast = (item) => dispatch => {
-    // console.log(item);
+export const addPodcast = item => dispatch => {
+    console.log(item);
     axios.post('/api/podcasts/',item)
         .then(res => {
             // console.log(res)
@@ -166,4 +175,20 @@ export const getMore = (url) => dispatch => {
           //.then(response => this.setState({ vehicles: response.data }))
           .catch(error => console.log(error));
     }
+}
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
 }

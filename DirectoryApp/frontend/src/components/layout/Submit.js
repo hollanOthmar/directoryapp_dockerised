@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import { getTags, addBlog, addPodcast } from '../../actions/feeds';
+import { join } from 'path';
 
 const contentTypes = [
     { label: "BLOG", value: "TYPE_BLOG" },
@@ -31,10 +32,10 @@ export class Submit extends Component {
 
         const {title,description,url,type,tags} = this.state;
         const item = {
-                        title:title,
-                        url:url,
-                        description:description,
-                        tags:tags.map(opt => opt.value)
+                        "title":title,
+                        "url":url,
+                        "description":description,
+                        "tags":(!tags)? []:tags.map(opt => {return {pk:opt.value,tag_color:"#4da6ff"};})
                     }
         // console.log(item);
 
@@ -51,7 +52,7 @@ export class Submit extends Component {
             type:"",
             tags:null
         })
-        window.location.href = "/";
+        // window.location.href = "/";
     }
 
     handleChange = (e) => this.setState({ tags:e});
@@ -93,7 +94,7 @@ export class Submit extends Component {
                     </div>
                     {/* <Select value={type} name="type" options={contentTypes} onChange={this.handleType} /> */}
                     {/* <Select isMulti value={tags} name="tags" options={this.props.tags.map(opt => ({ label: opt.pk, value: opt.pk }))} onChange={this.handleChange} /> */}
-                    <input className="btn btn-primary" type="submit" value="Submit" />
+                    <button className="btn btn-primary" type="submit" value="Submit">Submit</button>
                     
                 </form>
                 </div>
