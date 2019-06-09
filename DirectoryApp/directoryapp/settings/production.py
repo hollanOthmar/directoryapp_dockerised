@@ -105,8 +105,7 @@ DATABASES = {
         'NAME': os.getenv('EXTERNAL_MYSQL_DB'),
         'USER': os.getenv('EXTERNAL_MYSQL_USER'),
         'PASSWORD': os.getenv('EXTERNAL_MYSQL_PASSWORD'),
-        'HOST': os.getenv('EXTERNAL_MYSQL_HOST'),
-        'PORT': os.getenv('EXTERNAL_MYSQL_PORT')
+        'HOST': '/mysocket/mysqld.sock'
     }
 }
 # DATABASES = {
