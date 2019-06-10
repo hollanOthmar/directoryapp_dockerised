@@ -169,11 +169,6 @@ a.article:hover {
     position: absolute;
     top: 0;
     right: 0;
-    /* background: rgb(195,235,237);
-    background: linear-gradient(180deg, rgba(195,235,237,1) 0%, rgba(249,247,245,0.8449754901960784) 71%); */
-    /* background-image: url('/static/frontend/background.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed; */
 }
 
 #content.active {
