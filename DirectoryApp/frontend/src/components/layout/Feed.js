@@ -8,6 +8,10 @@ const divStyle = {
     width : '50%'
   };
 
+  const feedTitle = {
+    backgroundColor : '#5bd1d7'
+  };
+
 const cardStyle = {
     minHeight: '10rem'
 };
@@ -124,22 +128,24 @@ export class Feed extends Component {
   render() {
     return (
       <div>
-        <ol className="breadcrumb">
-            <li className="breadcrumb-item active">{!this.props.selected? "Recently Added": `About ${this.props.selected}`}</li>
+        <ol className="breadcrumb" style={feedTitle}>
+            <li className="breadcrumb-item active"><h4 className="text-dark">{!this.props.selected? "Recently Added": `About ${this.props.selected}`}</h4></li>
         </ol>
         <div className="d-flex align-content-start flex-wrap">
             {/* <div className="card-deck"> */}
                 {this.props.feeds.map(feed => (
-                    <div key={feed.id} className="col-md-6 col-lg-6 p-2">
-                        <div className="card border-light rounded-lg shadow w-100" style={cardStyle}>
-                            <div className="card-header border-bottom-0">{feed.author}</div>
+                    <div key={feed.id} className="col-md-6 col-xl-4 p-2">
+                        <div className="card border-light rounded-lg shadow w-100 border-0" style={cardStyle}>
+                            { !!feed.author &&
+                             <div className="card-header border-bottom-0 border-0" style={feedTitle}>{feed.author}</div>
+                            }
                             <div className="card-body">
                             <h4 className="card-title">
                                 <a onClick={this.openInNewTab} className="card-link" href={feed.url}>
                                     {feed.title}
                                 </a>
                             </h4>
-                              <p>{feed.description}</p>  
+                              <p className="card-text-feed">{feed.description}</p>  
                             </div>
                             
                             <div className="card-footer bg-transparent border-0">
@@ -149,7 +155,8 @@ export class Feed extends Component {
                                     ))}
                                     {/* <li class="list-inline-item">Nulla volutpat</li> */}
                                 </ul>
-                                <small className="text-muted">{feed.itemType} | created {new Date(feed.created_at).toLocaleDateString()}</small>
+                                {/* <small className="text-muted">{feed.itemType} | Last updated {new Date(feed.updated_at).toLocaleDateString()}</small> */}
+                                <small className="text-muted">{feed.itemType} | {(feed.itemType === "BLOG")?`Last updated ${new Date(feed.updated_at).toLocaleDateString()}`:`Created ${new Date(feed.created_at).toLocaleDateString()}`}</small>
                             </div>
                         </div>
                     </div>

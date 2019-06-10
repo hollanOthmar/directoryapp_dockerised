@@ -1,5 +1,6 @@
 from django.db import models
 from tags.models import Tag
+from datetime import datetime
 import uuid
 
 class Blog(models.Model):
@@ -12,6 +13,7 @@ class Blog(models.Model):
     tags = models.ManyToManyField(Tag,blank=True)
     show = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True, blank=True)
 
     def __str__(self):
         """
