@@ -31,5 +31,5 @@ class PopularTagsView(generics.GenericAPIView):
         counts = [f.total_count for f in tags][:4]
         summary = []
         for i in range(len(counts)):
-            summary.append({"count":counts[i],"tag_name":tags[i].__dict__['tag_name'],"tag_color":tags[i].__dict__['tag_color']})
+            summary.append({"count":counts[i],"tag_name":tags[i].__dict__['tag_name'],"tag_color":tags[i].__dict__['tag_color'],"icon":tags[i].__dict__['icon']})
         return Response(summary)

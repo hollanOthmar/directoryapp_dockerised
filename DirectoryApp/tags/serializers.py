@@ -7,4 +7,4 @@ class TagSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Tag
-        fields = ('pk','tag_color')
+        fields = ('pk','tag_color','icon')

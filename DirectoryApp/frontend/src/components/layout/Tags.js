@@ -3,6 +3,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getTags,getFilter } from '../../actions/feeds'
 
+const tagStyle = {
+    fontSize: "1.5rem",
+    width: "26px",
+    height: "26px"
+  };
 export class Tags extends Component {
     state = {
         filter:""
@@ -26,11 +31,13 @@ export class Tags extends Component {
     render() {
         const {filter} = this.state;
         const lowercasedFilter = filter.toLowerCase();
-        const filteredData = this.props.tags.filter(item => {
-            return Object.keys(item).some(key =>
-              item[key].toLowerCase().includes(lowercasedFilter)
-            );
-          });
+        const filteredData = this.props.tags.filter(item => item["pk"].toLowerCase().includes(lowercasedFilter)
+        //     {
+        //     return Object.keys(item).some(key =>
+        //       item["pk"].toLowerCase().includes(lowercasedFilter)
+        //     );
+        //   }
+          );
 
         return (
             <div>
@@ -46,7 +53,8 @@ export class Tags extends Component {
                 
             <div className="d-flex align-content-center justify-content-center flex-wrap">
             {filteredData.map(tag => (
-                <div key={`${tag.pk}${tag.pk}`} className="col-md-2 col-lg-2 p-2 d-flex justify-content-center rounded-pill shadow" style={{backgroundColor:tag.tag_color}}>
+                <div key={`${tag.pk}${tag.pk}`} className="col-md-2 col-lg-2 p-2 d-flex justify-content-between rounded-pill shadow" style={{backgroundColor:tag.tag_color}}>
+                    <img src={tag.icon} style={tagStyle}/>
                     <a href="#" id={tag.pk} onClick={this.onClick}>
                         <span id={tag.pk} className="badge badge-secondary badge-pill" style={{backgroundColor:tag.tag_color}}>{tag.pk}</span>
                     </a>

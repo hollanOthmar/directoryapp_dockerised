@@ -250,3 +250,10 @@ form.form-inline {
       font-weight: 300;
       line-height: 1.7em;
   }
+
+  .tagIcon {
+    font-size: 1.5rem;
+    /* margin-right: -24px; */
+    width: 23px;
+    height: 23px;
+  }

@@ -10,6 +10,7 @@ class Tag(models.Model):
     # podcasts = models.ManyToManyField(Podcast,blank=True)
     # tag_color = models.CharField(max_length=7,default="#adb5bd")
     tag_color = ColorField(default='#adb5bd')
+    icon = models.ImageField(upload_to='images/',null=True)
 
     def __str__(self):
         """

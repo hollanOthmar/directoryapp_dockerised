@@ -2,6 +2,8 @@
 from django.contrib import admin
 from django.urls import path, include, re_path
 from tags.api import PopularTagsView
+from django.conf import settings
+from django.conf.urls.static import static
 
 admin.site.site_header = "ITblogs.es Administration"
 admin.site.site_title = "ITblogs.es"
@@ -16,3 +18,8 @@ urlpatterns = [
     path('api/tags/', include('tags.urls')),
     path('api/popular/', PopularTagsView.as_view(), name='popular-tags-view'),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# if settings.DEBUG: 
+#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
