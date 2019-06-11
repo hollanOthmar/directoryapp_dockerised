@@ -13,6 +13,10 @@ const primaryColor = {
     backgroundColor : "#348498"
   };
 
+  const navColor = {
+      backgroundColor: "#5bd1d7"
+  }
+
 
 export class Sidenav extends Component {
 
@@ -53,19 +57,19 @@ export class Sidenav extends Component {
             <ul className="list-unstyled components">
                 <li className="justify-content-between align-items-center">
                         <a href="#" onClick={this.props.getBlogs}>
-                            <span className="badge badge-secondary badge-pill"><i className="fas fa-blog"></i> Blogs</span>
+                            <span className="badge badge-secondary badge-pill py-1 text-dark" style={navColor}><i className="fas fa-blog"></i> Blogs</span>
                         </a>
                 </li>
                 <li className="justify-content-between align-items-center">
                         <a href="#" onClick={this.props.getPodcasts}>
-                            <span className="badge badge-secondary badge-pill"><i className="fas fa-podcast"></i> Podcasts</span>
+                            <span className="badge badge-secondary badge-pill py-1 text-dark" style={navColor}><i className="fas fa-podcast"></i> Podcasts</span>
                         </a>
                 </li>
                 <li className="justify-content-between align-items-center">
-                    <Link to="/tags"><span className="badge badge-secondary badge-pill"><i className="fas fa-hashtag"></i>   All Tags</span></Link>
+                    <Link to="/tags"><span className="badge badge-secondary badge-pill py-1 text-dark" style={navColor}><i className="fas fa-hashtag"></i>   All Tags</span></Link>
                 </li>
                 <li className="justify-content-between align-items-center">
-                    <Link to="/submit"><span className="badge badge-secondary badge-pill"><i className="fas fa-plus"></i> Submit</span></Link>
+                    <Link to="/submit"><span className="badge badge-secondary badge-pill py-1 text-dark" style={navColor}><i className="fas fa-plus"></i> Submit</span></Link>
                 </li>
                 <p>Popular Tags</p>
                 {this.props.popular_tags.map(tag => (
@@ -75,7 +79,7 @@ export class Sidenav extends Component {
                                 <span id={tag.tag_name} className="badge badge-secondary badge-pill">{tag.count}</span>
                             </span> */}
                             
-                            <span id={tag.tag_name} className="d-flex justify-content-between badge badge-secondary badge-pill w-75" style={{backgroundColor:tag.tag_color}}>
+                            <span id={tag.tag_name} className="d-flex justify-content-between badge badge-secondary badge-pill py-1 w-75" style={{backgroundColor:tag.tag_color}}>
                             <span className="d-inline"><img className="tagIcon" src={tag.icon}/></span>
                             <div id={tag.tag_name} className="d-inline p-1 border-info badge-pill px-2" style={primaryColor} ><div className="d-inline pr-2">{tag.tag_name}</div>
                             <span id={tag.tag_name} className="d-inline badge py-0 px-2" style={secondaryColor}>{tag.count}</span>

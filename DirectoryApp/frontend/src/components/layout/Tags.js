@@ -41,7 +41,7 @@ export class Tags extends Component {
 
         return (
             <div>
-                <div className="bo lead d-flex align-items-center">All Tags #</div>
+                <div className="bo lead d-flex align-items-center text-dark">All Tags #</div>
                 <nav className="nav-float-middle navbar sticky-top navbar-expand-lg navbar-light bg-light rounded-pill w-50">
                 <div className="collapse navbar-collapse" id="navbarColor03">
                     <form onSubmit={this.onSubmit} type="submit" className="form-inline my-2 my-lg-0 w-100 mx-2">
@@ -53,7 +53,7 @@ export class Tags extends Component {
                 
             <div className="d-flex align-content-center justify-content-center flex-wrap">
             {filteredData.map(tag => (
-                <div key={`${tag.pk}${tag.pk}`} className="col-md-2 col-lg-2 p-2 d-flex justify-content-between rounded-pill shadow" style={{backgroundColor:tag.tag_color}}>
+                <div key={`${tag.pk}${tag.pk}`} className="col-sm-4 col-md-2 col-lg-2 py-1 d-flex justify-content-between rounded-pill shadow" style={{backgroundColor:tag.tag_color}}>
                     <img src={tag.icon} style={tagStyle}/>
                     <a href="#" id={tag.pk} onClick={this.onClick}>
                         <span id={tag.pk} className="badge badge-secondary badge-pill" style={{backgroundColor:tag.tag_color}}>{tag.pk}</span>

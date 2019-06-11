@@ -67,7 +67,7 @@ export class Submit extends Component {
         const {title, description, url,tags,type} = this.state;
         return (
             <Fragment>
-            <div className="bo lead d-flex align-items-center">Send us your Podcast or Blog</div>
+            <div className="bo lead d-flex align-items-center text-dark">Send us your Podcast or Blog</div>
             <div className="d-flex justify-content-center pt-3">
                 <div className="card border-light rounded-lg shadow w-50">
                 <div className="card-body">

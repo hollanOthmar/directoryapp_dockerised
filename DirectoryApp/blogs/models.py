@@ -15,6 +15,9 @@ class Blog(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
 
+    class Meta:
+        ordering = ["updated_at"]
+
     def __str__(self):
         """
         String for representing the Model object (in Admin site etc.)
