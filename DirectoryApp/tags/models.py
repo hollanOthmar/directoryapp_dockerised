@@ -10,7 +10,8 @@ class Tag(models.Model):
     # podcasts = models.ManyToManyField(Podcast,blank=True)
     # tag_color = models.CharField(max_length=7,default="#adb5bd")
     tag_color = ColorField(default='#adb5bd')
-    icon = models.ImageField(upload_to='images/',null=True)
+    # icon = models.ImageField(upload_to='images/',null=True)
+    icon = models.URLField(max_length=200,default="https://cdn0.iconfinder.com/data/icons/heroicons-ui/24/icon-hashtag-512.png")
 
     def __str__(self):
         """
