@@ -14,7 +14,7 @@ class PodcastViewSet(viewsets.ModelViewSet):
     pagination_class = PodcastPageNumberPagination
 
     filter_backends = (filters.SearchFilter,)
-    search_fields = ('@title', '@description','@tags__tag_name')
+    search_fields = ('$title', '$description','$@tags__tag_name')
 
     def get_queryset(self):
         """

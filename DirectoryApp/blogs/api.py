@@ -14,7 +14,7 @@ class BlogViewSet(viewsets.ModelViewSet):
     pagination_class = BlogPageNumberPagination
 
     filter_backends = (filters.SearchFilter,)
-    search_fields = ('@title', '@author','@tags__tag_name','@description')
+    search_fields = ('title', 'author','tags__tag_name','description')
     def get_queryset(self):
         """
         Optionally restricts the returned purchases to a given user,
