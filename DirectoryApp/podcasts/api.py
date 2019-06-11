@@ -14,7 +14,7 @@ class PodcastViewSet(viewsets.ModelViewSet):
     pagination_class = PodcastPageNumberPagination
 
     filter_backends = (filters.SearchFilter,)
-    search_fields = ('title', 'description','@tags__tag_name')
+    search_fields = ('title', 'description','tags__tag_name')
 
     def get_queryset(self):
         """
@@ -28,8 +28,4 @@ class PodcastViewSet(viewsets.ModelViewSet):
         if tag is not None:
             tn = unquote(tag)
             queryset = queryset.filter(tags__in=[tn])
-            
-        if search is not None:
-            sn = unquote(search)
-            queryset = queryset.filter(tags__in=[sn])
         return queryset

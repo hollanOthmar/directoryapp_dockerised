@@ -28,7 +28,4 @@ class BlogViewSet(viewsets.ModelViewSet):
             tn = unquote(tag)
             queryset = queryset.filter(tags__in=[tn])
         
-        if search is not None:
-            sn = unquote(search)
-            queryset = queryset.filter(tags__in=[sn])
         return queryset
