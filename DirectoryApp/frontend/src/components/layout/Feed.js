@@ -9,7 +9,8 @@ const divStyle = {
   };
 
   const feedTitle = {
-    backgroundColor : '#5bd1d7'
+    backgroundColor : '#5bd1d7',
+    minHeight : "49px"
   };
 
 const cardStyle = {
