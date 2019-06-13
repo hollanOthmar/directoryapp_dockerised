@@ -1,5 +1,6 @@
 from django.db import models
 from colorfield.fields import ColorField
+from django.utils.html import format_html
 # from blogs.models import Blog
 # from podcasts.models import Podcast
 
@@ -18,3 +19,10 @@ class Tag(models.Model):
         String for representing the Model object (in Admin site etc.)
         """
         return '{0}'.format(self.tag_name)
+
+    def colored_name(self):
+        return format_html(
+            '<span style="background: {};">{}</span>',
+            self.tag_color,
+            self.tag_color
+        )

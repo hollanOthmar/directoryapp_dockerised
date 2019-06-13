@@ -16,6 +16,7 @@ whitenoise = "*"
 psycopg2-binary = "*"
 mysqlclient = "*"
 pillow = "==5.4.1"
+drf-writable-nested = "*"
 
 [requires]
 python_version = "3.6"

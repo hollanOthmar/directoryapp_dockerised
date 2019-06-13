@@ -14,6 +14,7 @@ class Blog(models.Model):
     show = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
+    author_contact = models.TextField(default='https://www.google.com',blank=True)
 
     class Meta:
         ordering = ["updated_at"]
@@ -23,3 +24,7 @@ class Blog(models.Model):
         String for representing the Model object (in Admin site etc.)
         """
         return '{0}'.format(self.title)
+    
+    def published(self):
+        return self.show
+    published.boolean = True

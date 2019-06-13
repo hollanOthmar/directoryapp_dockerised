@@ -117,10 +117,9 @@ export class Feed extends Component {
         }
     }*/
 
-    openInNewTab = e => {
+    openInNewTab = (e) => {
         e.persist();
         e.preventDefault();
-        //console.log(e.target.href);
         var win = window.open(e.target.href, '_blank');
         win.focus();
     }
@@ -136,9 +135,16 @@ export class Feed extends Component {
                 {this.props.feeds.map(feed => (
                     <div key={feed.id} className="col-md-6 col-xl-4 p-2">
                         <div className="card border-light rounded-lg shadow w-100 border-0" style={cardStyle}>
-                            { !!feed.author &&
+                            {/* { !!feed.author &&
                              <div className="card-header border-bottom-0 border-0" style={feedTitle}>{feed.author}</div>
-                            }
+                            } */}
+                            
+                             <div className="card-header border-bottom-0 border-0" style={feedTitle}>
+                             <a href={!!feed.author?feed.author_contact:"#"} onClick={this.openInNewTab} className="card-link" >
+                                {feed.author}
+                            </a>
+                             </div>
+                            
                             <div className="card-body">
                             <h4 className="card-title">
                                 <a onClick={this.openInNewTab} className="card-link" href={feed.url}>
@@ -151,12 +157,20 @@ export class Feed extends Component {
                             <div className="card-footer bg-transparent border-0">
                             <ul className="list-inline">
                                     {feed.tags.map(tag => (
-                                        <li key={tag.pk} className="list-inline-item"><span className="badge badge-secondary badge-pill" style={{backgroundColor:tag.tag_color}}>{tag.pk}</span></li>
+                                        <li key={tag.pk} className="list-inline-item"><span className="badge badge-secondary badge-pill py-1" style={{backgroundColor:tag.tag_color}}>{tag.pk}</span></li>
                                     ))}
                                     {/* <li class="list-inline-item">Nulla volutpat</li> */}
                                 </ul>
                                 {/* <small className="text-muted">{feed.itemType} | Last updated {new Date(feed.updated_at).toLocaleDateString()}</small> */}
-                                <small className="text-muted">{feed.itemType} | {(feed.itemType === "BLOG")?`Last updated ${new Date(feed.updated_at).toLocaleDateString()}`:`Created ${new Date(feed.created_at).toLocaleDateString()}`}</small>
+                                <small className="text-muted">
+                                { (feed.itemType === "BLOG") &&
+                                <i className="fas fa-blog"></i>
+                                }
+                                { (feed.itemType === "PODCAST") &&
+                                <i className="fas fa-podcast"></i>
+                                }
+                                <span> </span>
+                                 | {`Last updated ${new Date(feed.updated_at).toLocaleDateString()}`}</small>
                             </div>
                         </div>
                     </div>

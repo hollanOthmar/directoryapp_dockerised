@@ -20,7 +20,7 @@ export const getBlogs = () => dispatch => {
 // ADD BLOG
 
 export const addBlog = item => dispatch => {
-    console.log(item);
+    // console.log(item);
     axios.post('/api/blogs/',item
     // {
     //     headers: {
@@ -51,7 +51,7 @@ export const getPodcasts = () => dispatch => {
 
 // ADD PODCASTS
 export const addPodcast = item => dispatch => {
-    console.log(item);
+    // console.log(item);
     axios.post('/api/podcasts/',item)
         .then(res => {
             // console.log(res)

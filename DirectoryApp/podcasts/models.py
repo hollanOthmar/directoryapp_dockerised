@@ -13,6 +13,9 @@ class Podcast(models.Model):
     tags = models.ManyToManyField(Tag,blank=True)
     show = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True, blank=True)
+    author = models.CharField(max_length=100,blank=True)
+    author_contact = models.TextField(default='https://www.google.com',blank=True)
 
     class Meta:
         ordering = ["created_at"]
@@ -22,3 +25,7 @@ class Podcast(models.Model):
         String for representing the Model object (in Admin site etc.)
         """
         return '{0}'.format(self.title)
+    
+    def published(self):
+        return self.show
+    published.boolean = True

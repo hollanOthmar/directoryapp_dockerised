@@ -15,6 +15,8 @@ export class Submit extends Component {
         title : "",
         description : "",
         url : "",
+        author:"",
+        author_contact:"",
         type:"",
         tags:null
     }
@@ -30,13 +32,16 @@ export class Submit extends Component {
 
         // console.log(this.state);
 
-        const {title,description,url,type,tags} = this.state;
+        const {title,description,url,type,tags, author,author_contact} = this.state;
         const item = {
                         "title":title,
                         "url":url,
                         "description":description,
+                        "author":author,
+                        "author_contact":author_contact,
                         "tags":(!tags)? []:tags.map(opt => {return {pk:opt.value,tag_color:"#4da6ff"};})
                     }
+                    // {return {pk:opt.value,tag_color:"#4da6ff"};}
         // console.log(item);
 
         if(type.value == "TYPE_BLOG"){
@@ -49,6 +54,8 @@ export class Submit extends Component {
             title : "",
             description : "",
             url : "",
+            author:"",
+            author_contact:"",
             type:"",
             tags:null
         })
@@ -64,7 +71,7 @@ export class Submit extends Component {
         // scaryAnimals = this.props.tags.map(opt => ({ label: opt.pk, value: opt.pk }))
     }
     render() {
-        const {title, description, url,tags,type} = this.state;
+        const {title, description, url,tags,type,author,author_contact} = this.state;
         return (
             <Fragment>
             <div className="bo lead d-flex align-items-center text-dark">Send us your Podcast or Blog</div>
@@ -83,6 +90,14 @@ export class Submit extends Component {
                     <div className="form-group">
                         <label htmlFor="exampleFormControlInput1">Link</label>
                         <input onChange={this.onChange} type="text" name="url" value={url} className="form-control form-control-sm" id="exampleFormControlInput1"/>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="exampleFormControlInput1">Author</label>
+                        <input onChange={this.onChange} type="text" name="author" value={author} className="form-control form-control-sm" id="exampleFormControlInput1" />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="exampleFormControlInput1">Author Page</label>
+                        <input onChange={this.onChange} type="text" name="author_contact" value={author_contact} className="form-control form-control-sm" id="exampleFormControlInput1" />
                     </div>
                     <div className="form-group">
                         <label >Type</label>
