@@ -141,6 +141,13 @@ export class Feed extends Component {
                             } */}
                             
                              <div className="card-header border-bottom-0 border-0" style={feedTitle}>
+                             { (feed.itemType === "BLOG") &&
+                                <i className="fas fa-blog"></i>
+                                }
+                                { (feed.itemType === "PODCAST") &&
+                                <i className="fas fa-podcast"></i>
+                                }
+                                <span>  </span>
                              <a href={!!feed.author?feed.author_contact:"#"} onClick={this.openInNewTab} className="card-link" >
                                 {feed.author}
                             </a>
@@ -164,14 +171,14 @@ export class Feed extends Component {
                                 </ul>
                                 {/* <small className="text-muted">{feed.itemType} | Last updated {new Date(feed.updated_at).toLocaleDateString()}</small> */}
                                 <small className="text-muted">
-                                { (feed.itemType === "BLOG") &&
+                                {/* { (feed.itemType === "BLOG") &&
                                 <i className="fas fa-blog"></i>
                                 }
                                 { (feed.itemType === "PODCAST") &&
                                 <i className="fas fa-podcast"></i>
                                 }
-                                <span> </span>
-                                 | {`Last updated ${new Date(feed.updated_at).toLocaleDateString()}`}</small>
+                                <span> </span> */}
+                                {`Last updated ${new Date(feed.updated_at).toLocaleDateString()}`}</small>
                             </div>
                         </div>
                     </div>
