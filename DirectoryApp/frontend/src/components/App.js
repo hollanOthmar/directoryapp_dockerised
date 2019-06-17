@@ -10,13 +10,13 @@ import Tags from './layout/Tags';
 import { Provider } from 'react-redux';
 import store from '../store';
 
-import { HashRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { HashRouter as Router, Route, Switch, Redirect, BrowserRouter } from "react-router-dom";
 
 class App extends Component {
     render() {
         return (
             <Provider store = {store}>
-            <Router>
+            <BrowserRouter>
             <div className="wrapper">
                 <Sidenav />
                 <div id="content">
@@ -40,7 +40,7 @@ class App extends Component {
                     
                 </div>
             </div>
-            </Router>
+            </BrowserRouter>
             </Provider>
         );
     }

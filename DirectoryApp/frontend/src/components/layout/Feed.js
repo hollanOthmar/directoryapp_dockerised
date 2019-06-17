@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getBlogs, getPodcasts, getFeeds, getMore,getFilter } from '../../actions/feeds'
+import { URLSearchParams } from 'url';
 
 
 const divStyle = {
@@ -98,13 +99,21 @@ export class Feed extends Component {
         // this.props.getBlogs()
         // this.props.getPodcasts()
         // console.log(this.props.selected)
-        // if(!!this.props.selected){
-        //     this.props.getFilter(this.props.selected)
-        // }
-        // else {
-        //     this.props.getFeeds();
-        // }
-        this.props.getFeeds(); 
+        var parsedUrl = new URL(window.location.href);
+        //console.log(parsedUrl.searchParams.get("q"));
+        //console.log(parsedUrl)
+        var search = parsedUrl.searchParams.get("q");
+        if(!!search){
+            this.props.getFilter(search)
+        }
+        else {
+            this.props.getFeeds();
+        }
+
+        // this.props.getFeeds();
+        // var parsedUrl = new URL(window.location.href);
+        // console.log(parsedUrl.searchParams.get("q"));
+        // console.log(parsedUrl)
         
     }
 

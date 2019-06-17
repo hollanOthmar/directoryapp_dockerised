@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getTags,getFilter } from '../../actions/feeds'
+import { getTags,getFilter } from '../../actions/feeds';
+import { Link } from 'react-router-dom';
 
 const tagStyle = {
     fontSize: "1.5rem",
@@ -55,9 +56,10 @@ export class Tags extends Component {
             {filteredData.map(tag => (
                 <div key={`${tag.pk}${tag.pk}`} className="col-sm-4 col-md-2 col-lg-2 py-1 d-flex justify-content-between rounded-pill shadow" style={{backgroundColor:tag.tag_color}}>
                     <img src={tag.icon} style={tagStyle}/>
-                    <a href="#" id={tag.pk} onClick={this.onClick}>
+                    <a href={`/?q=${tag.pk}`} id={tag.pk} onClick={this.onClick}>
                         <span id={tag.pk} className="badge badge-secondary badge-pill" style={{backgroundColor:tag.tag_color}}>{tag.pk}</span>
                     </a>
+                    {/* <Link to={{ pathname: "/", search: `?q=${tag.pk}` }}><span id={tag.pk} className="badge badge-secondary badge-pill" style={{backgroundColor:tag.tag_color}}>{tag.pk}</span></Link> */}
                 </div>
             ))}
             </div>
